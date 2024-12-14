@@ -5,6 +5,31 @@ import numpy as np
 
 path = "./src/sprites/"
 files_list = [f for f in listdir(path) if isfile(join(path, f))]
+colors = [(26,28,44),(93,39,93),(177,62,83),(239,125,87),(255,205,117),(167,240,112),(56,183,100),(37,113,121),(41,54,111),(59,93,201),(65,166,246),(115,239,247),(244,244,244),(148,176,194),(86,108,134),(51,60,87)]
+
+def get_color_id(r, g, b, a)->str:
+    if a ==0: # if transparent
+        return "g"
+    try:
+        i = colors.index((r,g,b))
+    except: # if color is invalid
+        return "h"
+    if i < 10: # if id is in [0,9]
+        return str(i)
+    else: # else we do letters
+        match i:
+            case 10:
+                return "a"
+            case 11:
+                return "b"
+            case 12:
+                return "c"
+            case 13:
+                return "d"
+            case 14:
+                return "e"
+            case 15:
+                return "f"
 
 def get_offset_x(img, w, h)->int:
     offsetx = 0
@@ -42,9 +67,10 @@ image = Image.open(join(path, "salade.png"))
 image_croped, off_x, off_y = get_croped_image(image)
 w, h = image_croped.size
 result = ""
-for i in range(w):
-    for i in range(h):
-        result.
+for v in range(h):
+    for k in range(w):
+        result += get_color_id(*image_croped.getpixel((k, v)))
+print('result is,', result)
 image_croped.show()
 exit()
 
