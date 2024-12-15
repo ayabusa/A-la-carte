@@ -1,9 +1,12 @@
 from kandinsky import *
+import ion
 
 print("Game started")
 colors = [color(i) for i in [(26,28,44),(93,39,93),(177,62,83),(239,125,87),(255,205,117),(167,240,112),(56,183,100),(37,113,121),(41,54,111),(59,93,201),(65,166,246),(115,239,247),(244,244,244),(148,176,194),(86,108,134),(51,60,87)]]
 sprites = {'assiette': (0, 2, 20, 17,
               'ggggggg000000gggggggggggg00cccccc00gggggggg00cccccccccc00ggggg0cccccccccccccc0ggg0cccccddddddccccc0gg0ccccdccccccdcccc0g0ccccdccccccccdcccc00cccdccccccccccdccd00cccdcccccccccccccd00dccdcccccccccccccd00dcccdccccccccccccd0g0dcccccddcccccccd0gg0dccccccccccccccd0ggg0ddccccccccccdd0ggggg00ddccccccdd00gggggggg00dddddd00gggggggggggg000000ggggggg'),
+ 'caisse': (0, 0, 20, 20,
+            'gg0000000000000000ggg0c0ccccccccccdcdd0g0ccd0ddcccddcdddddc000cdd0cccddcdddddcc00c0de0000000000dccc00cd00eeedddd0dd0ccc00cdc0eddddd0ddd0ccd00ccc0edddd0ccd00cde00ccc0dddd0cdd0e0dee00ccd0ddd0ddd0ed0eed00cdd0dd0ddd0edd0edd00ddc0d0cdd0eddd0dde00ccd00cdd0eeddd0dee00cdd0cdd0eedddd0eee00ddd0dd0eeddddd00ee00ddde0000000000cd0e00dddccccdeecce0ccd000ddccccdeeddeee0dde0g0ccccdeeddeeeee0d0ggg0000000000000000gg'),
  'oignon': (3, 3, 16, 13,
             'ggggggggggg00ggggggg00000g0650ggggg021122016650ggg0111c111210660g0211c111210g0500211cc11111200500211c11211110g0g012c112111110ggg012c111112120gggg01121112110gggg01221112110gggggg010122110gggggggg0g00000ggggggg'),
  'oignon_coupe': (3, 5, 13, 14,
@@ -23,45 +26,97 @@ sprites = {'assiette': (0, 2, 20, 17,
  'salade': (1, 4, 18, 13,
             'gggggggggggg0gggggggggg0000g0070gggggggg07777077570ggggg00755567567570ggg077567777777570gg07657765655767770g077776556556755770000076556556767070ggg075556555670g00ggg075556555670gggggg07665655670gggggggg077777770gggggggggg0000000gggggg'),
  'salade_cuite': (2, 7, 15, 9,
-                  'gggg0000000ggggg0055765567000g077755555556770g0655655555560g075566566565550g5666656655760g050705576750700g0g0g070606g0gggggggg0g0g0gggg')}
+                  'gggg0000000ggggg0055765567000g077755555556770g0655655555560g075566566565550g5666656655760g050705576750700g0g0g070606g0gggggggg0g0g0gggg'),
+ 'steak': (3, 3, 14, 14,
+           'ggg0000000gggggg033322cc0gggg0cc222d2c20gg032d22cc2c220g0322d2c222c0gg022d2c22220gggg0c22cd220ggggg022222d20gggggg0222d2d20gggggg02d2d2220gggggg0c2c222c0gggggg0cc22d220gggggg00cc2220gggggggg00000g'),
+ 'steak_cuit': (3, 5, 15, 9,
+                'gggg0000000ggggg0000223320000g003323332333200033233322333330032333233323320023332333233220022222333222220g0002222222000ggggg0000000gggg')}
+
+
+maps = [[[2, 2, 2, 3, 3, 2, 2, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 2, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
 
 class Ingredient:
     def __init__(self, i_nom):
         self.i_nom = i_nom
-        self.i_sprite = sprites[i_nom]
 
 class Plat:
     def __init__(self, p_type, p_ingredients):
         self.p_type = p_type
         self.p_ingredients = p_ingredients
 
-def draw_sprite(sprite_name: str, x: int, y: int, multiplier=1)->None:
-    if sprite_name not in sprites: raise ValueError('Sprite name not in sprites')
-    offx, offy, w, h, data = sprites[sprite_name]
-    curx, cury = x+offx, y+offy
-    for i in range(h):
-        for k in range(w):
-            px = int(data[w*i+k], 18)
-            if px != 16 and px != 17:
-                fill_rect(curx*multiplier,cury*multiplier,multiplier,multiplier,colors[px])
-            curx += 1
-        curx=x+offx
-        cury+=1
+class Game:
+    def __init__(self):
+        pass
+    def scan_keyboard(self):
+        if ion.keydown(ion.KEY_BACKSPACE):
+            print("hello")
+        elif ion.keydown(ion.KEY_TOOLBOX):
+            print("hello")
+        elif ion.keydown(ion.KEY_UP):
+            print("hello")
+        elif ion.keydown(ion.KEY_DOWN):
+            print("hello")
+        elif ion.keydown(ion.KEY_LEFT):
+            print("hello")
+        elif ion.keydown(ion.KEY_RIGHT):
+            print("hello")
+    def render_all(self):
+        """Render literraly everything, this should not be called too many times"""
+        self.draw_map(0)
+    def draw_element(self, el: int, x:int, y:int)->None:
+        if el==0:
+            fill_rect(x*40, y*40+40, 40, 40, colors[14])
+        elif el==1:
+            fill_rect(x*40, y*40+40, 40, 4, colors[3])
+            fill_rect(x*40, y*40+40+4, 40, 2, colors[1])
+            fill_rect(x*40, y*40+40+6, 40, 8, colors[2])
+            fill_rect(x*40, y*40+40+14, 40, 12, colors[15])
+            fill_rect(x*40, y*40+40+26, 40, 14, colors[14])
+        elif el==2:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+        elif el==3:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("poele", x*40, y*40+40, 2)
+        elif el==4:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("planche", x*40, y*40+40, 2)
+        elif el==5:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("assiette", x*40, y*40+42, 2)
+            game.draw_sprite("assiette", x*40, y*40+38, 2)
+            game.draw_sprite("assiette", x*40, y*40+34, 2)
+        elif el==6:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("caisse", x*40, y*40+40, 2)
+            game.draw_sprite("oignon", x*40, y*40+40, 2)
+        elif el==7:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("caisse", x*40, y*40+40, 2)
+            game.draw_sprite("salade", x*40, y*40+40, 2)
+        elif el==8:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("caisse", x*40, y*40+40, 2)
+            game.draw_sprite("steak", x*40, y*40+40, 2)
 
+    def draw_map(self, mapid: int):
+            for l in range(5):
+                for c in range(8):
+                    el = maps[mapid][l][c]
+                    self.draw_element(el, c, l)
+    def draw_sprite(self, sprite_name: str, x: int, y: int, multiplier=1)->None:
+        if sprite_name not in sprites: raise ValueError('Sprite name not in sprites')
+        offx, offy, w, h, data = sprites[sprite_name]
+        curx, cury = 0,0
+        for i in range(h):
+            for k in range(w):
+                px = int(data[w*i+k], 18)
+                if px != 16 and px != 17:
+                    fill_rect(x+offx+curx*multiplier,y+offy+cury*multiplier,multiplier,multiplier,colors[px])
+                curx += 1
+            curx=0
+            cury+=1
 
-def draw_map(mapid: int):
-    if mapid==0:
-        fill_rect(0,40,320,182,colors[4]) # table
-        fill_rect(40,80,240,4,colors[3])
-        fill_rect(40,84,240,2,colors[1])
-        fill_rect(40,86,240,8,colors[2])
-        fill_rect(40,94,240,12,colors[15])
-        fill_rect(40,106,240,116,colors[14]) # sol
-        fill_rect(120,120,80,80,colors[4]) # table 2
-        fill_rect(120,200,80,4,colors[3])
-        fill_rect(122,204,76,2,colors[1])
-        fill_rect(122,206,76,8,colors[2])
-        fill_rect(122,214,76,8,colors[15])
-
-draw_map(0)
-draw_sprite("player_up", 0, 0, 2)
+game = Game()
+game.draw_map(0)
+while True:
+    game.scan_keyboard()

@@ -85,7 +85,7 @@ def convert_all_files(save_to_file: bool, compress_sprites: bool, path: str)->No
     for file in files_list:
         if not file.endswith(".png"):
             print("Skipping", file, ", because it's not a png image.")
-            break
+            continue
         image = Image.open(join(path, file))
         image_croped, off_x, off_y = get_croped_image(image)
         w, h = image_croped.size
