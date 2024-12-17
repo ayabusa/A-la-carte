@@ -1,5 +1,5 @@
 from kandinsky import *
-import ion
+import ion, time
 
 print("Game started")
 colors = [color(i) for i in [(26,28,44),(93,39,93),(177,62,83),(239,125,87),(255,205,117),(167,240,112),(56,183,100),(37,113,121),(41,54,111),(59,93,201),(65,166,246),(115,239,247),(244,244,244),(148,176,194),(86,108,134),(51,60,87)]]
@@ -31,7 +31,7 @@ sprites = {'assiette': (0, 2, 20, 17,
            'ggg0000000gggggg033322cc0gggg0cc222d2c20gg032d22cc2c220g0322d2c222c0gg022d2c22220gggg0c22cd220ggggg022222d20gggggg0222d2d20gggggg02d2d2220gggggg0c2c222c0gggggg0cc22d220gggggg00cc2220gggggggg00000g'),
  'steak_cuit': (3, 5, 15, 9,
                 'gggg0000000ggggg0000223320000g003323332333200033233322333330032333233323320023332333233220022222333222220g0002222222000ggggg0000000gggg')}
-
+key_pressed = [False]*5
 
 maps = [[[2, 2, 2, 3, 3, 2, 2, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 2, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
 
@@ -44,25 +44,54 @@ class Plat:
         self.p_type = p_type
         self.p_ingredients = p_ingredients
 
+class Player:
+    def __init__(self, game: object, x:int, y:int) -> None:
+        self.x = x
+        self.y = y
+        self.game = game
+        self.direction = "down"
+    def draw_player(self)->None:
+        self.game.draw_sprite("player_"+self.direction, self.x*40, self.y*40+40, 2)
+    def move(self, x_mod: int, y_mod: int)->None:
+        el = maps[game.mapid][self.y][self.x]
+        self.game.draw_element(el, self.x, self.y)
+        new_el=maps[self.game.mapid][self.y+y_mod][self.x+x_mod]
+        if self.y+y_mod<4 and new_el in [0,1]:
+            self.y+=y_mod
+            self.x+=x_mod
+        self.draw_player()
+
 class Game:
-    def __init__(self):
-        pass
+    def __init__(self, mapid:int):
+        self.mapid = mapid
+        self.player = Player(self, 1,1)
     def scan_keyboard(self):
-        if ion.keydown(ion.KEY_BACKSPACE):
+        if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
             print("hello")
-        elif ion.keydown(ion.KEY_TOOLBOX):
+            time.sleep(0.1)
+        elif ion.keydown(ion.KEY_TOOLBOX) or ion.keydown(ion.KEY_POWER):
             print("hello")
+            time.sleep(0.1)
         elif ion.keydown(ion.KEY_UP):
-            print("hello")
+            self.player.direction="up"
+            self.player.move(0,-1)
+            time.sleep(0.1)
         elif ion.keydown(ion.KEY_DOWN):
-            print("hello")
+            self.player.direction="down"
+            self.player.move(0,1)
+            time.sleep(0.1)
         elif ion.keydown(ion.KEY_LEFT):
-            print("hello")
+            self.player.direction="left"
+            self.player.move(-1,0)
+            time.sleep(0.1)
         elif ion.keydown(ion.KEY_RIGHT):
-            print("hello")
+            self.player.direction="right"
+            self.player.move(1,0)
+            time.sleep(0.1)
     def render_all(self):
         """Render literraly everything, this should not be called too many times"""
-        self.draw_map(0)
+        self.draw_map(self.mapid)
+        self.player.draw_player()
     def draw_element(self, el: int, x:int, y:int)->None:
         if el==0:
             fill_rect(x*40, y*40+40, 40, 40, colors[14])
@@ -116,7 +145,7 @@ class Game:
             curx=0
             cury+=1
 
-game = Game()
-game.draw_map(0)
+game = Game(0)
+game.render_all()
 while True:
     game.scan_keyboard()
