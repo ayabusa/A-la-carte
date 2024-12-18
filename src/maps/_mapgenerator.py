@@ -11,7 +11,8 @@ colors_value = {(86,108,134): (0, "sol"),
                 (244,244,244): (5, "pile assiettes"),
                 (93,39,93): (6, "oignons"),
                 (167,240,112): (7, "salade"),
-                (177,62,83): (8, "viande")
+                (177,62,83): (8, "viande"),
+                (37,113,121): (9, "pain")
                 }
 
 def get_color_id(r, g, b, a):
@@ -26,7 +27,7 @@ def generate_all_maps(path: str)->None:
     for file in files_list:
         if not file.endswith(".png"):
             print("Skipping", file, ", because it's not a png image.")
-            break
+            continue
         image = Image.open(join(path, file))
         w, h = image.size
         result = []

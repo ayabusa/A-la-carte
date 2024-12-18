@@ -3,7 +3,7 @@ import ion, time
 
 print("Game started")
 colors = [color(i) for i in [(26,28,44),(93,39,93),(177,62,83),(239,125,87),(255,205,117),(167,240,112),(56,183,100),(37,113,121),(41,54,111),(59,93,201),(65,166,246),(115,239,247),(244,244,244),(148,176,194),(86,108,134),(51,60,87)]]
-sprites = {'assiette': (0, 2, 20, 17,
+sprites ={'assiette': (0, 2, 20, 17,
               'ggggggg000000gggggggggggg00cccccc00gggggggg00cccccccccc00ggggg0cccccccccccccc0ggg0cccccddddddccccc0gg0ccccdccccccdcccc0g0ccccdccccccccdcccc00cccdccccccccccdccd00cccdcccccccccccccd00dccdcccccccccccccd00dcccdccccccccccccd0g0dcccccddcccccccd0gg0dccccccccccccccd0ggg0ddccccccccccdd0ggggg00ddccccccdd00gggggggg00dddddd00gggggggggggg000000ggggggg'),
  'caisse': (0, 0, 20, 20,
             'gg0000000000000000ggg0c0ccccccccccdcdd0g0ccd0ddcccddcdddddc000cdd0cccddcdddddcc00c0de0000000000dccc00cd00eeedddd0dd0ccc00cdc0eddddd0ddd0ccd00ccc0edddd0ccd00cde00ccc0dddd0cdd0e0dee00ccd0ddd0ddd0ed0eed00cdd0dd0ddd0edd0edd00ddc0d0cdd0eddd0dde00ccd00cdd0eeddd0dee00cdd0cdd0eedddd0eee00ddd0dd0eeddddd00ee00ddde0000000000cd0e00dddccccdeecce0ccd000ddccccdeeddeee0dde0g0ccccdeeddeeeee0d0ggg0000000000000000gg'),
@@ -11,6 +11,8 @@ sprites = {'assiette': (0, 2, 20, 17,
             'ggggggggggg00ggggggg00000g0650ggggg021122016650ggg0111c111210660g0211c111210g0500211cc11111200500211c11211110g0g012c112111110ggg012c111112120gggg01121112110gggg01221112110gggggg010122110gggggggg0g00000ggggggg'),
  'oignon_coupe': (3, 5, 13, 14,
                   'gggggg00000ggggg000ccccc0ggg0cccc000c0gg0c00c100g0c00c0g0c1cc00c00c00g0c11cc1001cc00ccc110gg011cc1000c0ggg0011c0g0c0ggggg00c00g0c0ggggg01cc00c0gggggg011cc10ggggggg00110gggggggggg00gg'),
+ 'pain': (2, 4, 17, 14,
+          'ggggg0000000ggggggg0004444444000ggg04cc44443444330g0444444344444433004443444443444330043444444444443300444444444433333004433443333333330g000033333330000g0033300000003330004444333344444330g044344444433330ggg0004343333000ggggggg0000000ggggg'),
  'planche': (0, 5, 20, 14,
              'ggggg00000000000000ggggg0333333333333330g00g0333003333333330033003320c0333323330033333330cd022233330032333330ddc023333300332233330ddd033333002200333330ddd033330g00g03333330ddf03330gggg022222220fdf0220ggggg00000000ffff00gggggggggggggg00fdf0gggggggggggggggg0ff0ggggggggggggggggg00gg'),
  'player_down': (3, 0, 15, 20,
@@ -31,9 +33,10 @@ sprites = {'assiette': (0, 2, 20, 17,
            'ggg0000000gggggg033322cc0gggg0cc222d2c20gg032d22cc2c220g0322d2c222c0gg022d2c22220gggg0c22cd220ggggg022222d20gggggg0222d2d20gggggg02d2d2220gggggg0c2c222c0gggggg0cc22d220gggggg00cc2220gggggggg00000g'),
  'steak_cuit': (3, 5, 15, 9,
                 'gggg0000000ggggg0000223320000g003323332333200033233322333330032333233323320023332333233220022222333222220g0002222222000ggggg0000000gggg')}
+
 key_pressed = [False]*5
 
-maps = [[[2, 2, 2, 3, 3, 2, 2, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 2, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
+maps = [[[2, 2, 2, 3, 3, 2, 2, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 9, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
 
 class Ingredient:
     def __init__(self, i_nom):
@@ -147,6 +150,10 @@ class Game:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
             game.draw_sprite("caisse", x*40, y*40+40, 2)
             game.draw_sprite("steak", x*40, y*40+40, 2)
+        elif el==9:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("caisse", x*40, y*40+40, 2)
+            game.draw_sprite("pain", x*40, y*40+40, 2)
         if type(element)==tuple: 
             game.draw_sprite(element[1], x*40, y*40+40, 2)
 
@@ -173,6 +180,7 @@ class Game:
             if el==6: return Ingredient("oignon")
             elif el==7: return Ingredient("salade")
             elif el==8: return Ingredient("steak")
+            elif el==9: return Ingredient("pain")
             return None
         if el[0]==2:
             print("element picked")
