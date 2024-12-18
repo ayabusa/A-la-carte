@@ -41,8 +41,8 @@ class Ingredient:
 
 class Plat:
     def __init__(self, p_type, p_ingredients):
-        self.p_type = p_type
-        self.p_ingredients = p_ingredients
+        self.p_type=p_type
+        self.p_ingredients=p_ingredients
 
 class Player:
     def __init__(self, game: object, x:int, y:int) -> None:
@@ -50,8 +50,11 @@ class Player:
         self.y = y
         self.game = game
         self.direction = "down"
+        self.holding=Ingredient("salade")
     def draw_player(self)->None:
         self.game.draw_sprite("player_"+self.direction, self.x*40, self.y*40+40, 2)
+        if self.holding != None:
+            self.game.draw_sprite(self.holding.i_nom, self.x*40+10, self.y*40+60)
     def move(self, x_mod: int, y_mod: int)->None:
         el = maps[game.mapid][self.y][self.x]
         self.game.draw_element(el, self.x, self.y)
@@ -60,14 +63,23 @@ class Player:
             self.y+=y_mod
             self.x+=x_mod
         self.draw_player()
+    def do_pickup_action(self)->None:
+        dir,el=self.direction,None
+        if dir=="up": el=self.game.map[self.y-1][self.x]
+        elif dir=="down": el=self.game.map[self.y+1][self.x]
+        elif dir=="left": el=self.game.map[self.y][self.x+1]
+        else: el=self.game.map[self.y][self.x-1]
+        if self.holding != None:
+            el = (el,self.holding.i_nom)
 
 class Game:
     def __init__(self, mapid:int):
         self.mapid = mapid
+        self.map = maps[mapid]
         self.player = Player(self, 1,1)
     def scan_keyboard(self):
         if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
-            print("hello")
+            self.player.do_pickup_action()
             time.sleep(0.1)
         elif ion.keydown(ion.KEY_TOOLBOX) or ion.keydown(ion.KEY_POWER):
             print("hello")
@@ -92,7 +104,9 @@ class Game:
         """Render literraly everything, this should not be called too many times"""
         self.draw_map(self.mapid)
         self.player.draw_player()
-    def draw_element(self, el: int, x:int, y:int)->None:
+    def draw_element(self, element: int, x:int, y:int)->None:
+        el=element
+        if type(el)==tuple: el=el[0]
         if el==0:
             fill_rect(x*40, y*40+40, 40, 40, colors[14])
         elif el==1:
@@ -126,11 +140,12 @@ class Game:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
             game.draw_sprite("caisse", x*40, y*40+40, 2)
             game.draw_sprite("steak", x*40, y*40+40, 2)
+        if type(el)==tuple: game.draw_sprite(el[1].i_nom, x*40, y*40+40, 2)
 
     def draw_map(self, mapid: int):
             for l in range(5):
                 for c in range(8):
-                    el = maps[mapid][l][c]
+                    el = self.map[l][c]
                     self.draw_element(el, c, l)
     def draw_sprite(self, sprite_name: str, x: int, y: int, multiplier=1)->None:
         if sprite_name not in sprites: raise ValueError('Sprite name not in sprites')
