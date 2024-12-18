@@ -64,13 +64,20 @@ class Player:
             self.x+=x_mod
         self.draw_player()
     def do_pickup_action(self)->None:
-        dir,el=self.direction,None
-        if dir=="up": el=self.game.map[self.y-1][self.x]
-        elif dir=="down": el=self.game.map[self.y+1][self.x]
-        elif dir=="left": el=self.game.map[self.y][self.x+1]
-        else: el=self.game.map[self.y][self.x-1]
+        dir,el,elx,ely=self.direction,None,None,None
+        if dir=="up": el,elx,ely=self.game.map[self.y-1][self.x],self.x,self.y-1
+        elif dir=="down": el,elx,ely=self.game.map[self.y+1][self.x],self.x,self.y+1
+        elif dir=="left": el,elx,ely=self.game.map[self.y][self.x-1],self.x-1,self.y
+        else: el,elx,ely=self.game.map[self.y][self.x+1],self.x+1,self.y
         if self.holding != None:
             el = (el,self.holding.i_nom)
+            self.game.map[ely][elx]=el
+            game.draw_element(el, elx, ely)
+            self.holding = None
+            self.draw_player()
+        else:
+            self.holding = self.game.recup_ingredient(elx,ely)
+            self.draw_player()
 
 class Game:
     def __init__(self, mapid:int):
@@ -104,7 +111,7 @@ class Game:
         """Render literraly everything, this should not be called too many times"""
         self.draw_map(self.mapid)
         self.player.draw_player()
-    def draw_element(self, element: int, x:int, y:int)->None:
+    def draw_element(self, element, x:int, y:int)->None:
         el=element
         if type(el)==tuple: el=el[0]
         if el==0:
@@ -140,7 +147,8 @@ class Game:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
             game.draw_sprite("caisse", x*40, y*40+40, 2)
             game.draw_sprite("steak", x*40, y*40+40, 2)
-        if type(el)==tuple: game.draw_sprite(el[1].i_nom, x*40, y*40+40, 2)
+        if type(element)==tuple: 
+            game.draw_sprite(element[1], x*40, y*40+40, 2)
 
     def draw_map(self, mapid: int):
             for l in range(5):
@@ -159,6 +167,21 @@ class Game:
                 curx += 1
             curx=0
             cury+=1
+    def recup_ingredient(self, elx:int,ely:int)->Ingredient:
+        el=self.map[ely][elx]
+        if type(el)!=tuple: 
+            if el==6: return Ingredient("oignon")
+            elif el==7: return Ingredient("salade")
+            elif el==8: return Ingredient("steak")
+            return None
+        if el[0]==2:
+            print("element picked")
+            self.map[ely][elx]=2
+            self.draw_element(2,elx,ely)
+            return Ingredient(el[1])
+        else:
+            print("element not pickable")
+            return None
 
 game = Game(0)
 game.render_all()
