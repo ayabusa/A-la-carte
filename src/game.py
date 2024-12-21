@@ -25,6 +25,8 @@ sprites ={'assiette': (0, 2, 20, 17,
                'gg00000000000ggg0ccc0ccc0ccc0g0ccc0ccccc0ccc00ccc0ccccc0ccc00ccc0ccccc0ccc0g0ccc0ccc0ccc0ggg000000cc000gggg0ccccccccc0gggg00000000000ggggg044444440gggggg044444440ggggggg0000000ggggggg0ccccccc0ggggg0ccccccccc0gggg0c0ccccc0c0gggg0c0ccccc0c0gggg000ccccc000gggggg0ccccc0gggggggg0000000ggggggggg00g00ggggg'),
  'poele': (0, 0, 19, 19,
            'gggggg00000000gggggggg000eeeeeeee000gggg0eeeffffffffeee0gg0eeffeeeeeeeeffee0g0efeeeeeeeeeeeefe0g0efeeeeeeeeeeeefe0g0eeeeeeeeeeeeeeee0g00eeeeeeeeeeeeee00g0b0000eeeeee0000f0g000fff000000ffff00g00fffffffffff000f0g0ff0000000000baf0g0ff0fabfffbafffba0g0f0ffbff2f3b3ffff0gg0fff0ffffffff0fff0g0fff0000000000fff0g0fff0gggggggg0fff0g0ff0gggggggggg0ff0gg00gggggggggggg00g'),
+ 'poubelle': (0, 0, 20, 20,
+              'ggggg0000000000ggggggggg0ffffffffff0ggggggg0fffffffffffe0ggggg0ffffffffffffef0ggg0fffefffffffffeff0g0ffffefff66f6ffffff00ffffeff6ff66ffefff00ffffeffff666ffffff00ffffef6fffffffffff00ffffe666ff6f6fefff00ffffef6ff666ffefff00ffffeff6ff6fffefff00ffffefffffffffefff00ffffffffffffffffff00ffffeeeeeeeeeeffff00fffeffffffffffefff00ffefff000000fffeff00fefff00000000fffef0g0fff0000000000fffeggg0000000000000000gg'),
  'salade': (1, 4, 18, 13,
             'gggggggggggg0gggggggggg0000g0070gggggggg07777077570ggggg00755567567570ggg077567777777570gg07657765655767770g077776556556755770000076556556767070ggg075556555670g00ggg075556555670gggggg07665655670gggggggg077777770gggggggggg0000000gggggg'),
  'salade_cuite': (2, 7, 15, 9,
@@ -36,7 +38,7 @@ sprites ={'assiette': (0, 2, 20, 17,
 
 key_pressed = [False]*5
 
-maps = [[[2, 2, 2, 3, 3, 2, 2, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 9, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
+maps = [[[2, 2, 2, 3, 3, 2, 11, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 9, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
 
 class Ingredient:
     def __init__(self, i_nom):
@@ -73,10 +75,7 @@ class Player:
         elif dir=="left": el,elx,ely=self.game.map[self.y][self.x-1],self.x-1,self.y
         else: el,elx,ely=self.game.map[self.y][self.x+1],self.x+1,self.y
         if self.holding != None:
-            el = (el,self.holding.i_nom)
-            self.game.map[ely][elx]=el
-            game.draw_element(el, elx, ely)
-            self.holding = None
+            self.holding = self.game.poser_ingredient(elx,ely,self.holding)
             self.draw_player()
         else:
             self.holding = self.game.recup_ingredient(elx,ely)
@@ -154,6 +153,9 @@ class Game:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
             game.draw_sprite("caisse", x*40, y*40+40, 2)
             game.draw_sprite("pain", x*40, y*40+40, 2)
+        elif el==11:
+            fill_rect(x*40, y*40+40, 40, 40, colors[4])
+            game.draw_sprite("poubelle", x*40, y*40+40, 2)
         if type(element)==tuple: 
             game.draw_sprite(element[1], x*40, y*40+40, 2)
 
@@ -174,6 +176,24 @@ class Game:
                 curx += 1
             curx=0
             cury+=1
+    def poser_ingredient(self, elx:int,ely:int,holding:Ingredient)->Ingredient:
+        old_el=self.map[ely][elx]
+        if type(old_el) == tuple: return holding
+        result = None
+        if old_el==11:
+            return None
+        elif old_el==2:
+            pass
+        elif old_el==3 and holding.i_nom=='steak':
+            pass
+        elif old_el==4 and(holding.i_nom=='oignon' or holding.i_nom=='salade'):
+            pass
+        else:
+            return holding
+        el = (old_el,holding.i_nom)
+        self.map[ely][elx]=el
+        game.draw_element(el, elx, ely)
+        return result
     def recup_ingredient(self, elx:int,ely:int)->Ingredient:
         el=self.map[ely][elx]
         if type(el)!=tuple: 
