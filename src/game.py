@@ -68,10 +68,17 @@ class Ingredient:
         self.i_nom = i_nom
 
 class Assiette:
-    def __init__(self, a_ingredients=None):
+    def __init__(self, a_ingredients=[]):
         self.a_ingredients = a_ingredients
     def render(self, x, y, multiplier):
-        pass
+        draw_sprite("assiette",x,y,multiplier)
+        if self.a_ingredients==[]: return
+        if "pain" in self.a_ingredients: draw_sprite("pain_bas",x,y,multiplier)
+        if "salade_cuite" in self.a_ingredients: draw_sprite("salade_cuite",x+multiplier,y-multiplier,multiplier)
+        if "steak_cuit" in self.a_ingredients: draw_sprite("steak_cuit",x,y-2*multiplier,multiplier)
+        if "oignon_coupe" in self.a_ingredients: draw_sprite("oignon_coupe",x+multiplier,y-4*multiplier,multiplier)
+        if "tomate_coupe" in self.a_ingredients: draw_sprite("tomate_coupe",x-2*multiplier,y-multiplier,multiplier)
+        if "pain" in self.a_ingredients: draw_sprite("pain_haut",x,y,multiplier)
 
 class Player:
     def __init__(self, game: object, x:int, y:int) -> None:
@@ -80,10 +87,14 @@ class Player:
         self.game = game
         self.direction = "down"
         self.holding=Ingredient("salade")
+        assiette = Assiette()
+        assiette.render(0,0,2)
     def draw_player(self)->None:
         draw_sprite("player_"+self.direction, self.x*40, self.y*40+40, 2)
-        if self.holding != None:
+        if type(self.holding)==Ingredient:
             draw_sprite(self.holding.i_nom, self.x*40+10, self.y*40+60)
+        elif type(self.holding)==Assiette:
+            self.holding.render(self.x*40+10, self.y*40+60, 1)
     def move(self, x_mod: int, y_mod: int)->None:
         el = maps[game.mapid][self.y][self.x]
         self.game.draw_element(el, self.x, self.y)
@@ -134,7 +145,7 @@ class Game:
     def scan_keyboard(self):
         if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
             self.player.do_pickup_action()
-            time.sleep(0.1)
+            time.sleep(0.2)
         elif ion.keydown(ion.KEY_TOOLBOX) or ion.keydown(ion.KEY_POWER):
             print("hello")
             time.sleep(0.1)
@@ -213,27 +224,42 @@ class Game:
                 for c in range(8):
                     el = self.map[l][c]
                     self.draw_element(el, c, l)
-    def poser_ingredient(self, elx:int,ely:int,holding:Ingredient)->Ingredient:
+    def poser_ingredient(self, elx:int,ely:int,holding:Ingredient|Assiette)->Ingredient|Assiette:
         old_el=self.map[ely][elx]
-        if type(old_el) == tuple: return holding
-        result = None
-        el = (old_el,holding.i_nom)
-        if old_el==11:
-            return None
-        elif old_el==2:
-            pass
-        elif old_el==3 and holding.i_nom=='steak':
-            el = (el[0],el[1],time.monotonic(), 8)
-        elif old_el==4 and(holding.i_nom=='oignon' or holding.i_nom=='salade' or holding.i_nom=='tomate'):
-            el = (el[0],el[1],time.monotonic(), 5)
-        else:
-            return holding
-        self.map[ely][elx]=el
-        game.draw_element(el, elx, ely)
-        return result
-    def recup_ingredient(self, elx:int,ely:int)->Ingredient:
+        if type(old_el)==tuple and type(old_el[1])!=Assiette: return holding
+        if type(holding)==Ingredient:
+            result = None
+            el = (old_el,holding.i_nom)
+            if old_el==11:
+                return None
+            elif old_el==2:
+                pass
+            elif old_el==3 and holding.i_nom=='steak':
+                el = (el[0],el[1],time.monotonic(), 8)
+            elif old_el==4 and(holding.i_nom=='oignon' or holding.i_nom=='salade' or holding.i_nom=='tomate'):
+                el = (el[0],el[1],time.monotonic(), 5)
+            elif  type(old_el)==tuple and type(old_el[1])==Assiette:
+                n=holding.i_nom
+                if n=="salade_cuite" or n=="tomate_coupe" or n=="oignon_coupe" or n=="pain" or n=="steak_cuit":
+                    if n not in self.map[ely][elx][1].a_ingredients:
+                        self.map[ely][elx][1].a_ingredients.append(n)
+                        self.map[ely][elx][1].render(elx*40,ely*40+40,2)
+                return None
+            else:
+                return holding
+            self.map[ely][elx]=el
+            game.draw_element(el, elx, ely)
+            return result
+        elif type(holding)==Assiette:
+            if old_el==11:
+                return None
+            elif old_el==2:
+                self.map[ely][elx]=(old_el,holding)
+                holding.render(elx*40, ely*40+40, 2)
+                return None
+    def recup_ingredient(self, elx:int,ely:int)->Ingredient|Assiette:
         el=self.map[ely][elx]
-        if type(el)!=tuple: 
+        if type(el)==int: 
             if el==5: return Assiette()
             elif el==6: return Ingredient("oignon")
             elif el==7: return Ingredient("salade")
@@ -241,6 +267,10 @@ class Game:
             elif el==9: return Ingredient("pain")
             elif el==12: return Ingredient("tomate")
             return None
+        elif type(el[1])==Assiette:
+            self.map[ely][elx]=2
+            self.draw_element(2,elx,ely)
+            return el[1]
         if el[0]==2:
             print("element picked")
             self.map[ely][elx]=2
