@@ -100,12 +100,25 @@ class Game:
         self.mapid = mapid
         self.map = maps[mapid]
         self.player = Player(self, 1,1)
-    """def do_timer_step(self):
-        for i in self.map:
-            for k in i:
+    def do_timer_step(self):
+        for i in range(5):
+            for k in range(8):
                 el=self.map[i][k]
                 if type(el)==tuple and len(el)==4:
-    """                
+                    if time.monotonic()>el[2]+el[3]:
+                        if el[1] == "steak":
+                            self.map[i][k] = (el[0],"steak_cuit")
+                        if el[1] == "salade":
+                            self.map[i][k] = (el[0],"salade_cuite")
+                        if el[1] == "oignon":
+                            self.map[i][k] = (el[0],"oignon_coupe")
+                        self.draw_element(self.map[i][k],k,i)
+                    else:
+                        self.draw_progressbar(k,i, (time.monotonic()-el[2])*18//el[3])
+    def draw_progressbar(self, x, y, progress):
+        fill_rect(x*40, y*40+40, 40, 10, colors[0])
+        fill_rect(x*40+2, y*40+42, 36, 6, colors[7])
+        fill_rect(x*40+2, y*40+42, int(progress)*2, 6, colors[5])
     def scan_keyboard(self):
         if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
             self.player.do_pickup_action()
@@ -188,17 +201,17 @@ class Game:
         old_el=self.map[ely][elx]
         if type(old_el) == tuple: return holding
         result = None
+        el = (old_el,holding.i_nom)
         if old_el==11:
             return None
         elif old_el==2:
             pass
         elif old_el==3 and holding.i_nom=='steak':
-            pass
+            el = (el[0],el[1],time.monotonic(), 8)
         elif old_el==4 and(holding.i_nom=='oignon' or holding.i_nom=='salade'):
-            pass
+            el = (el[0],el[1],time.monotonic(), 5)
         else:
             return holding
-        el = (old_el,holding.i_nom)
         self.map[ely][elx]=el
         game.draw_element(el, elx, ely)
         return result
