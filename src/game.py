@@ -7,6 +7,8 @@ sprites ={'assiette': (0, 2, 20, 17,
               'ggggggg000000gggggggggggg00cccccc00gggggggg00cccccccccc00ggggg0cccccccccccccc0ggg0cccccddddddccccc0gg0ccccdccccccdcccc0g0ccccdccccccccdcccc00cccdccccccccccdccd00cccdcccccccccccccd00dccdcccccccccccccd00dcccdccccccccccccd0g0dcccccddcccccccd0gg0dccccccccccccccd0ggg0ddccccccccccdd0ggggg00ddccccccdd00gggggggg00dddddd00gggggggggggg000000ggggggg'),
  'caisse': (0, 0, 20, 20,
             'gg0000000000000000ggg0c0ccccccccccdcdd0g0ccd0ddcccddcdddddc000cdd0cccddcdddddcc00c0de0000000000dccc00cd00eeedddd0dd0ccc00cdc0eddddd0ddd0ccd00ccc0edddd0ccd00cde00ccc0dddd0cdd0e0dee00ccd0ddd0ddd0ed0eed00cdd0dd0ddd0edd0edd00ddc0d0cdd0eddd0dde00ccd00cdd0eeddd0dee00cdd0cdd0eedddd0eee00ddd0dd0eeddddd00ee00ddde0000000000cd0e00dddccccdeecce0ccd000ddccccdeeddeee0dde0g0ccccdeeddeeeee0d0ggg0000000000000000gg'),
+ 'gui_art': (0, 0, 56, 55,
+             'ggggggggggggg0cccccccccd0cccccccddd0cccc00gggggggggggggggggggggggggg0cccccccccd0cccccccccdd0cccccd0ggggggggggggggggggggggggg0ccccccccd0ccccccccccdd0cccccd0ggggggggggggggggggggggggg0ccccccccd0ccccccccccddd0ccccdd0ggggggggggggggggggggggg0ccccccccd0ccccccccccccdd0ccdccd0ggggggggggggggggggggggg0ccccccccd0ccccccccccccdd0ccdccdd0gggggggggggggggggggggg0ccccccccd0ccccccccccccdd0cccdcdd0gggggggggggggggggggggg0cccccccd0cccccccccccccdd0cccdcdd0gggggggggggggggggggggg0cccccccd0cccccccccccccdd0cccccdd0gggggggggggggggggggggg0cccccccd0ccccccccccccdd0cccccddd0gggggggggggggggggggggg0cccccccd0ccccccccccccdd0cccccdd0gggggggggggggggggggggg0cccccccd0cccccccccccccd0cccccddd0gggggggggggggggggggggg0cccccccd0ccccccccccccdd0ccccddd0ggggggggggggggggggggggg0cccccccd0cccccccccccdd0cccccdd0gggggggggggggggggggggggg0cccccccd0ccccccccccdd0cccccdd0ggggggggggggggggggggggggg0ddccccd0ccccccccccdd0cccccdd0gggggggggggggggggggggggggg000dddcd0cccccccccdd0cccccdd0gggggggggggggggggggggggggg0ccc000ddcccccccccdd0cccccdd0ggggggggggggggggggggggggggg0ddcccc00ddccccccdd0cccccdd0gggggggggggggggggggggggggggg000ddcccc00dddccc00cccccdd0gggggggggggggggggggggggggggg043300dddccc000dddccccccdd0gggggggggggggggggggggggggggg0044433000ddcccc000ddcccdd0ggggggggggggggggggggggggggggg044444433300ddccccc00dddd0gggggggggggggggggggggggggggggg04444000443300dddcccd00d0gggggggggggggggggggggggggggggg044440444044433000dddddd0ggggggggggggggggggggggggggggggg04444044004444433300dddd0ggggggggggggggggggggggggggggggg0444444400444400043300d0ggggggggggggggggggggggggggggggg044044440044440044044330gggggggggggggggggggggggggggggggg04404444444444004404330ggggggggggggggggggggggggggggggggg04404444444440044404330ggggggggggggggggggggggggggggggggg0444044444444444444330ggggggggggggg0000000ggggggggggggggg044400444444444444330gggggggggg0004444444000ggggggggggggg0044400444444444330gggggggggg04cc44443444330gggggggggggggg00444000444440330ggggggggg04444443444444330gggggggggggggg004444400440330gggggggggg04443444443444330gggggggggggggg040044444433330gggggggggg04344444444444330ggggggggggggg0c0330000033300ggggggggggg04444444444333330gggggggg000g0ccc00330gg000ggggggggggggg04433443333333330ggggggg0ccc0c0cccc00gggggggggggggggggggg000033333330000fggggg00ccccccc0ccccc000ggggggggggggggggg0222000000022200gggg0cccccccccc0ccccccc0ggggggggggggggg0000022222220000c0gggcccddccccccc0ccccccc0ggggggggggggg0c056600000007600cd0ggcddd00ccccccc0ccccccc0ggggggggggg0c00507055767507040cd0gdd00g0cccc0dc0cccccccc0ggggggggg00c04030307060630330cd0gd0ggg0cccccc0dcc0ddcccc0gggg0000c0dc044344040303330ccd0g0gggg0cccccc0dcd000ddccd0000ccccd0dcc0004343333000cccd0ggggg0ccccccc0ccd0gg00dccccccccccdd0dcccc0000000cccccd0gggggg0cccc0d0dccd0gggg00dccccccc00000dddccccccccccddd0ggggggg0cccccc0dcdd0gggggg0dccc000ggggg000dddddddddd000ggggggg0ccccccc0ccd0gggggggg0000ggggggggggg0000000000gggggggggg0cccccc0dcdd0ggggggggggggggggggggggggggggggggggggggggggg0cccc0d0cddd0gggggggggggggggggggggggggggggggggggggggggg0ccccccc0cdd0ggggggggggggggggggggggggggggggggggggggggggg0cccccc0dcdd0ggggggggggggggggggggggggggggggggggggggggggg0cccc0d0cddd0ggggggggggggggggggggggggggggggggggggggggg'),
  'oignon': (3, 3, 16, 13,
             'ggggggggggg00ggggggg00000g0650ggggg021122016650ggg0111c111210660g0211c111210g0500211cc11111200500211c11211110g0g012c112111110ggg012c111112120gggg01121112110gggg01221112110gggggg010122110gggggggg0g00000ggggggg'),
  'oignon_coupe': (3, 5, 13, 14,
@@ -35,10 +37,22 @@ sprites ={'assiette': (0, 2, 20, 17,
            'ggg0000000gggggg033322cc0gggg0cc222d2c20gg032d22cc2c220g0322d2c222c0gg022d2c22220gggg0c22cd220ggggg022222d20gggggg0222d2d20gggggg02d2d2220gggggg0c2c222c0gggggg0cc22d220gggggg00cc2220gggggggg00000g'),
  'steak_cuit': (3, 5, 15, 9,
                 'gggg0000000ggggg0000223320000g003323332333200033233322333330032333233323320023332333233220022222333222220g0002222222000ggggg0000000gggg')}
-
 key_pressed = [False]*5
 
 maps = [[[2, 2, 2, 3, 3, 2, 11, 2], [2, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 9, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
+
+def draw_sprite(sprite_name: str, x: int, y: int, multiplier=1)->None:
+        if sprite_name not in sprites: raise ValueError('Sprite name not in sprites')
+        offx, offy, w, h, data = sprites[sprite_name]
+        curx, cury = 0,0
+        for i in range(h):
+            for k in range(w):
+                px = int(data[w*i+k], 18)
+                if px != 16 and px != 17:
+                    fill_rect(x+offx+curx*multiplier,y+offy+cury*multiplier,multiplier,multiplier,colors[px])
+                curx += 1
+            curx=0
+            cury+=1
 
 class Ingredient:
     def __init__(self, i_nom):
@@ -57,9 +71,9 @@ class Player:
         self.direction = "down"
         self.holding=Ingredient("salade")
     def draw_player(self)->None:
-        self.game.draw_sprite("player_"+self.direction, self.x*40, self.y*40+40, 2)
+        draw_sprite("player_"+self.direction, self.x*40, self.y*40+40, 2)
         if self.holding != None:
-            self.game.draw_sprite(self.holding.i_nom, self.x*40+10, self.y*40+60)
+            draw_sprite(self.holding.i_nom, self.x*40+10, self.y*40+60)
     def move(self, x_mod: int, y_mod: int)->None:
         el = maps[game.mapid][self.y][self.x]
         self.game.draw_element(el, self.x, self.y)
@@ -86,6 +100,12 @@ class Game:
         self.mapid = mapid
         self.map = maps[mapid]
         self.player = Player(self, 1,1)
+    """def do_timer_step(self):
+        for i in self.map:
+            for k in i:
+                el=self.map[i][k]
+                if type(el)==tuple and len(el)==4:
+    """                
     def scan_keyboard(self):
         if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
             self.player.do_pickup_action()
@@ -128,54 +148,42 @@ class Game:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
         elif el==3:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("poele", x*40, y*40+40, 2)
+            draw_sprite("poele", x*40, y*40+40, 2)
         elif el==4:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("planche", x*40, y*40+40, 2)
+            draw_sprite("planche", x*40, y*40+40, 2)
         elif el==5:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("assiette", x*40, y*40+42, 2)
-            game.draw_sprite("assiette", x*40, y*40+38, 2)
-            game.draw_sprite("assiette", x*40, y*40+34, 2)
+            draw_sprite("assiette", x*40, y*40+42, 2)
+            draw_sprite("assiette", x*40, y*40+38, 2)
+            draw_sprite("assiette", x*40, y*40+34, 2)
         elif el==6:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("caisse", x*40, y*40+40, 2)
-            game.draw_sprite("oignon", x*40, y*40+40, 2)
+            draw_sprite("caisse", x*40, y*40+40, 2)
+            draw_sprite("oignon", x*40, y*40+40, 2)
         elif el==7:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("caisse", x*40, y*40+40, 2)
-            game.draw_sprite("salade", x*40, y*40+40, 2)
+            draw_sprite("caisse", x*40, y*40+40, 2)
+            draw_sprite("salade", x*40, y*40+40, 2)
         elif el==8:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("caisse", x*40, y*40+40, 2)
-            game.draw_sprite("steak", x*40, y*40+40, 2)
+            draw_sprite("caisse", x*40, y*40+40, 2)
+            draw_sprite("steak", x*40, y*40+40, 2)
         elif el==9:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("caisse", x*40, y*40+40, 2)
-            game.draw_sprite("pain", x*40, y*40+40, 2)
+            draw_sprite("caisse", x*40, y*40+40, 2)
+            draw_sprite("pain", x*40, y*40+40, 2)
         elif el==11:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
-            game.draw_sprite("poubelle", x*40, y*40+40, 2)
+            draw_sprite("poubelle", x*40, y*40+40, 2)
         if type(element)==tuple: 
-            game.draw_sprite(element[1], x*40, y*40+40, 2)
+            draw_sprite(element[1], x*40, y*40+40, 2)
 
     def draw_map(self, mapid: int):
             for l in range(5):
                 for c in range(8):
                     el = self.map[l][c]
                     self.draw_element(el, c, l)
-    def draw_sprite(self, sprite_name: str, x: int, y: int, multiplier=1)->None:
-        if sprite_name not in sprites: raise ValueError('Sprite name not in sprites')
-        offx, offy, w, h, data = sprites[sprite_name]
-        curx, cury = 0,0
-        for i in range(h):
-            for k in range(w):
-                px = int(data[w*i+k], 18)
-                if px != 16 and px != 17:
-                    fill_rect(x+offx+curx*multiplier,y+offy+cury*multiplier,multiplier,multiplier,colors[px])
-                curx += 1
-            curx=0
-            cury+=1
     def poser_ingredient(self, elx:int,ely:int,holding:Ingredient)->Ingredient:
         old_el=self.map[ely][elx]
         if type(old_el) == tuple: return holding
@@ -211,7 +219,39 @@ class Game:
             print("element not pickable")
             return None
 
+class Gui:
+    def __init__(self) -> None:
+        self.selected = 0
+        self.render()
+    def redraw_text(self):
+        draw_string("A la carte", 200, 10, colors[3], colors[15])
+        but_colors = [colors[4]]*3
+        but_colors[self.selected]=colors[3]
+        but = ["Jouer", "Options", "Aide"]
+        for i in range(len(but)):
+            draw_string(but[i], 200, 40+i*20, but_colors[i], colors[15])
+    def render(self):
+        fill_rect(0,0,320,222,colors[15])
+        draw_sprite("gui_art", 0, 0, 4)
+        self.redraw_text()
+    def loop(self)->int:
+        while True:
+            if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
+                break
+            elif ion.keydown(ion.KEY_UP):
+                self.selected = (self.selected-1)%3
+                self.redraw_text()
+                time.sleep(0.2)
+            elif ion.keydown(ion.KEY_DOWN):
+                self.selected = (self.selected+1)%3
+                self.redraw_text()
+                time.sleep(0.2)
+        return self.selected
+
+gui = Gui()
+gui.loop()
 game = Game(0)
 game.render_all()
 while True:
     game.scan_keyboard()
+    game.do_timer_step()
