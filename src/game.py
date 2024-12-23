@@ -58,10 +58,11 @@ class Ingredient:
     def __init__(self, i_nom):
         self.i_nom = i_nom
 
-class Plat:
-    def __init__(self, p_type, p_ingredients):
-        self.p_type=p_type
-        self.p_ingredients=p_ingredients
+class Assiette:
+    def __init__(self, a_ingredients=None):
+        self.a_ingredients = a_ingredients
+    def render(self, x, y, multiplier):
+        pass
 
 class Player:
     def __init__(self, game: object, x:int, y:int) -> None:
@@ -218,7 +219,8 @@ class Game:
     def recup_ingredient(self, elx:int,ely:int)->Ingredient:
         el=self.map[ely][elx]
         if type(el)!=tuple: 
-            if el==6: return Ingredient("oignon")
+            if el==5: return Assiette()
+            elif el==6: return Ingredient("oignon")
             elif el==7: return Ingredient("salade")
             elif el==8: return Ingredient("steak")
             elif el==9: return Ingredient("pain")
