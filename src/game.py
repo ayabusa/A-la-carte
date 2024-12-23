@@ -228,6 +228,10 @@ class Game:
             self.map[ely][elx]=2
             self.draw_element(2,elx,ely)
             return Ingredient(el[1])
+        elif el[0]==3 or el[0]==4:
+            self.map[ely][elx]=el[0]
+            self.draw_element(el[0],elx,ely)
+            return Ingredient(el[1])
         else:
             print("element not pickable")
             return None
