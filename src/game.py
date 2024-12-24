@@ -259,6 +259,8 @@ class Game:
                 self.map[ely][elx]=(old_el,holding)
                 holding.render(elx*40, ely*40+40, 2)
                 return None
+            else:
+                return holding
     def recup_ingredient(self, elx:int,ely:int)->Ingredient|Assiette:
         el=self.map[ely][elx]
         if type(el)==int: 
