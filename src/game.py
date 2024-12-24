@@ -68,8 +68,8 @@ class Ingredient:
         self.i_nom = i_nom
 
 class Assiette:
-    def __init__(self, a_ingredients=[]):
-        self.a_ingredients = a_ingredients
+    def __init__(self):
+        self.a_ingredients = []
     def render(self, x, y, multiplier):
         draw_sprite("assiette",x,y,multiplier)
         if self.a_ingredients==[]: return
