@@ -244,6 +244,8 @@ class Game:
                     if n not in self.map[ely][elx][1].a_ingredients:
                         self.map[ely][elx][1].a_ingredients.append(n)
                         self.map[ely][elx][1].render(elx*40,ely*40+40,2)
+                    else: return holding
+                else: return holding
                 return None
             else:
                 return holding
