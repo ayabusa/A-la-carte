@@ -14,7 +14,8 @@ colors_value = {(86,108,134): (0, "sol"),
                 (177,62,83): (8, "viande"),
                 (37,113,121): (9, "pain"),
                 (26,28,44): (11,"poubelle"),
-                (65,166,246): (12,"tomate")
+                (65,166,246): (12,"tomate"),
+                (148,176,194): (13,"tapis roullant")
                 }
 
 def get_color_id(r, g, b, a):

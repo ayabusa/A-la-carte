@@ -1,5 +1,13 @@
+try: # This is for the kandinsky emulator, it will be ignored on the calc
+  import os
+  if hasattr(os, "environ"):
+    os.environ['KANDINSKY_OS_MODE'] = '0'
+    os.environ['KANDINSKY_ZOOM_RATIO'] = "4"
+except: pass
+
 from kandinsky import *
 import ion, time
+import random
 
 print("Game started")
 colors = [color(i) for i in [(26,28,44),(93,39,93),(177,62,83),(239,125,87),(255,205,117),(167,240,112),(56,183,100),(37,113,121),(41,54,111),(59,93,201),(65,166,246),(115,239,247),(244,244,244),(148,176,194),(86,108,134),(51,60,87)]]
@@ -41,6 +49,8 @@ sprites ={'assiette': (0, 3, 20, 17,
            'ggg0000000gggggg033322cc0gggg0cc222d2c20gg032d22cc2c220g0322d2c222c0gg022d2c22220gggg0c22cd220ggggg022222d20gggggg0222d2d20gggggg02d2d2220gggggg0c2c222c0gggggg0cc22d220gggggg00cc2220gggggggg00000g'),
  'steak_cuit': (3, 5, 15, 9,
                 'gggg0000000ggggg0000223320000g003323332333200033233322333330032333233323320023332333233220022222333222220g0002222222000ggggg0000000gggg'),
+ 'tapis': (0, 0, 20, 20,
+           'feeeeeffffffffeeeeefffeeeeeffffffeeeeefffffeeeeeffffeeeeefffffffeeeeeffeeeeefffffffffeeeeeeeeeefffffefffffeeeeeeeefffffeeefffffeeeeeefffffeeeeefffffeeeefffffeeeeeeefffffeefffffeeeeeeeeeffffffffffeeeeefeeeeeffffffffeeeeefffeeeeeffffffeeeeefffffeeeeeffffeeeeefffffffeeeeeffeeeeefffffffffeeeeeeeeeefffffefffffeeeeeeeefffffeeefffffeeeeeefffffeeeeefffffeeeefffffeeeeeeefffffeefffffeeeeeeeeeffffffffffeeeee'),
  'tomate': (4, 3, 12, 13,
             'ggggggg0gggggggg0g060gggggg060700ggggg02277220ggg0276767220g026226227220022c22722120022cc222221002222c222110g0222222210gg0222221110ggg00111100gggggg0000gggg'),
  'tomate_coupe': (3, 4, 13, 11,
@@ -48,7 +58,7 @@ sprites ={'assiette': (0, 3, 20, 17,
 
 key_pressed = [False]*5
 
-maps = [[[2, 2, 2, 3, 3, 2, 11, 2], [12, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 9, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 0, 0, 1]]]
+maps = [[[2, 2, 2, 3, 3, 2, 11, 2], [12, 1, 1, 1, 1, 1, 1, 4], [6, 0, 0, 4, 9, 0, 0, 5], [7, 0, 0, 2, 8, 0, 0, 2], [1, 0, 0, 1, 1, 13, 13, 1]]]
 
 def draw_sprite(sprite_name: str, x: int, y: int, multiplier=1)->None:
         if sprite_name not in sprites: raise ValueError('Sprite name not in sprites')
@@ -79,6 +89,38 @@ class Assiette:
         if "oignon_coupe" in self.a_ingredients: draw_sprite("oignon_coupe",x+multiplier,y-4*multiplier,multiplier)
         if "tomate_coupe" in self.a_ingredients: draw_sprite("tomate_coupe",x-2*multiplier,y-multiplier,multiplier)
         if "pain" in self.a_ingredients: draw_sprite("pain_haut",x,y,multiplier)
+
+class Mission:
+    def __init__(self) -> None:
+        self.m_ingredients = ["pain", "steak_cuit"]
+        self.m_time = (time.monotonic(), random.randint(20,40))
+        if random.getrandbits(1)==1: self.m_ingredients.append("salade_cuite")
+        if random.getrandbits(1)==1: self.m_ingredients.append("oignon_coupe")
+        if random.getrandbits(1)==1: self.m_ingredients.append("tomate_coupe")
+    def re_render(self, place:int):
+        fill_rect(place+4,26,38,12,colors[3])
+        draw_string(str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))//60)+":"+str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))%60), place+5, 26, colors[12], colors[3], True)
+        fill_rect(place+2,26,2,14,colors[0])
+        fill_rect(place+4,38,38,2,colors[0])
+        fill_rect(place+41,37,2,2,colors[0])
+    def first_render(self, place:int):
+        fill_rect(place+3,3,27,34, colors[3])
+        fill_rect(place+30,3,27,34, colors[3])
+        #lines v
+        fill_rect(place+3,2,54,2, colors[0])
+        fill_rect(place+3,36,54,2, colors[0])
+        fill_rect(place+2,3,2,34, colors[0])
+        fill_rect(place+56,3,2,34, colors[0])
+        a=Assiette()
+        a.a_ingredients = self.m_ingredients
+        a.render(place+5, 5, 1)
+        if "salade_cuite" in self.m_ingredients: draw_sprite('salade_cuite', place+26, 8, 1)
+        if "oignon_coupe" in self.m_ingredients: draw_sprite('oignon_coupe', place+39, 16, 1)
+        if "tomate_coupe" in self.m_ingredients: draw_sprite('tomate_coupe', place+39, 1, 1)
+        draw_string(str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))//60)+":"+str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))%60), place+5, 26, colors[12], colors[3], True)
+        fill_rect(place+2,26,2,14,colors[0])
+        fill_rect(place+4,38,38,2,colors[0])
+        fill_rect(place+41,37,2,2,colors[0])
 
 class Player:
     def __init__(self, game: object, x:int, y:int) -> None:
@@ -216,6 +258,8 @@ class Game:
             fill_rect(x*40, y*40+40, 40, 40, colors[4])
             draw_sprite("caisse", x*40, y*40+40, 2)
             draw_sprite("tomate", x*40, y*40+40, 2)
+        elif el==13:
+            draw_sprite("tapis", x*40, y*40+40, 2)
         if type(element)==tuple: 
             draw_sprite(element[1], x*40, y*40+40, 2)
 
@@ -317,10 +361,17 @@ class Gui:
                 time.sleep(0.2)
         return self.selected
 
+
+
+
 gui = Gui()
 gui.loop()
 game = Game(0)
 game.render_all()
+fill_rect(0,0,320,40,colors[2])
+m = Mission()
+m.first_render(0)
 while True:
+    m.re_render(0)
     game.scan_keyboard()
     game.do_timer_step()
