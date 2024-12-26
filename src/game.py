@@ -93,34 +93,38 @@ class Assiette:
 class Mission:
     def __init__(self) -> None:
         self.m_ingredients = ["pain", "steak_cuit"]
-        self.m_time = (time.monotonic(), random.randint(20,40))
+        self.m_time = (time.monotonic(), random.randint(40,60))
         if random.getrandbits(1)==1: self.m_ingredients.append("salade_cuite")
         if random.getrandbits(1)==1: self.m_ingredients.append("oignon_coupe")
         if random.getrandbits(1)==1: self.m_ingredients.append("tomate_coupe")
+    def is_finished(self):
+        return time.monotonic()-self.m_time[0]>self.m_time[1]
     def re_render(self, place:int):
-        fill_rect(place+4,26,38,12,colors[3])
-        draw_string(str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))//60)+":"+str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))%60), place+5, 26, colors[12], colors[3], True)
-        fill_rect(place+2,26,2,14,colors[0])
-        fill_rect(place+4,38,38,2,colors[0])
-        fill_rect(place+41,37,2,2,colors[0])
+        offst = place*61
+        fill_rect(offst+4,26,38,12,colors[3])
+        draw_string(str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))//60)+":"+str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))%60), offst+5, 26, colors[12], colors[3], True)
+        fill_rect(offst+2,26,2,14,colors[0])
+        fill_rect(offst+4,38,38,2,colors[0])
+        fill_rect(offst+41,37,2,2,colors[0])
     def first_render(self, place:int):
-        fill_rect(place+3,3,27,34, colors[3])
-        fill_rect(place+30,3,27,34, colors[3])
+        offst = place*61
+        fill_rect(offst+3,3,27,34, colors[3])
+        fill_rect(offst+30,3,27,34, colors[3])
         #lines v
-        fill_rect(place+3,2,54,2, colors[0])
-        fill_rect(place+3,36,54,2, colors[0])
-        fill_rect(place+2,3,2,34, colors[0])
-        fill_rect(place+56,3,2,34, colors[0])
+        fill_rect(offst+3,2,54,2, colors[0])
+        fill_rect(offst+3,36,54,2, colors[0])
+        fill_rect(offst+2,3,2,34, colors[0])
+        fill_rect(offst+56,3,2,34, colors[0])
         a=Assiette()
         a.a_ingredients = self.m_ingredients
-        a.render(place+5, 5, 1)
-        if "salade_cuite" in self.m_ingredients: draw_sprite('salade_cuite', place+26, 8, 1)
-        if "oignon_coupe" in self.m_ingredients: draw_sprite('oignon_coupe', place+39, 16, 1)
-        if "tomate_coupe" in self.m_ingredients: draw_sprite('tomate_coupe', place+39, 1, 1)
-        draw_string(str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))//60)+":"+str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))%60), place+5, 26, colors[12], colors[3], True)
-        fill_rect(place+2,26,2,14,colors[0])
-        fill_rect(place+4,38,38,2,colors[0])
-        fill_rect(place+41,37,2,2,colors[0])
+        a.render(offst+5, 5, 1)
+        if "salade_cuite" in self.m_ingredients: draw_sprite('salade_cuite', offst+26, 8, 1)
+        if "oignon_coupe" in self.m_ingredients: draw_sprite('oignon_coupe', offst+39, 16, 1)
+        if "tomate_coupe" in self.m_ingredients: draw_sprite('tomate_coupe', offst+39, 1, 1)
+        draw_string(str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))//60)+":"+str(int(self.m_time[1]-(time.monotonic()-self.m_time[0]))%60), offst+5, 26, colors[12], colors[3], True)
+        fill_rect(offst+2,26,2,14,colors[0])
+        fill_rect(offst+4,38,38,2,colors[0])
+        fill_rect(offst+41,37,2,2,colors[0])
 
 class Player:
     def __init__(self, game: object, x:int, y:int) -> None:
@@ -163,6 +167,26 @@ class Game:
         self.mapid = mapid
         self.map = maps[mapid]
         self.player = Player(self, 1,1)
+        self.missions = []
+        self.old_missions = []
+        self.pro_mission = (time.monotonic(), 3)
+    def do_mission_step(self):
+        if time.monotonic()-self.pro_mission[0]>self.pro_mission[1]:
+            self.missions.append(Mission())
+            self.pro_mission = (time.monotonic(), random.randint(20,30))
+        for i in range(len(self.missions)):
+            if self.missions[i].is_finished():
+                self.missions.pop(i)
+                break
+        if self.old_missions!=self.missions:
+            fill_rect(0,0,320,40,colors[2])
+            self.old_missions=[]
+            for i in range(len(self.missions)):
+                self.missions[i].first_render(i)
+                self.old_missions.append(self.missions[i])
+        else:
+            for i in range(len(self.missions)):
+                self.missions[i].re_render(i)
     def do_timer_step(self):
         for i in range(5):
             for k in range(8):
@@ -369,9 +393,7 @@ gui.loop()
 game = Game(0)
 game.render_all()
 fill_rect(0,0,320,40,colors[2])
-m = Mission()
-m.first_render(0)
 while True:
-    m.re_render(0)
     game.scan_keyboard()
     game.do_timer_step()
+    game.do_mission_step()
