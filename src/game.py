@@ -173,7 +173,7 @@ class Game:
     def do_mission_step(self):
         if time.monotonic()-self.pro_mission[0]>self.pro_mission[1]:
             self.missions.append(Mission())
-            self.pro_mission = (time.monotonic(), random.randint(20,30))
+            self.pro_mission = (time.monotonic(), random.randint(15,25))
         for i in range(len(self.missions)):
             if self.missions[i].is_finished():
                 self.missions.pop(i)
@@ -324,6 +324,12 @@ class Game:
                 self.map[ely][elx]=(old_el,holding)
                 holding.render(elx*40, ely*40+40, 2)
                 return None
+            elif old_el==13:
+                for i in self.missions:
+                    if set(i.m_ingredients)==set(holding.a_ingredients):
+                        self.missions.remove(i)
+                        return None
+                return holding
             else:
                 return holding
     def recup_ingredient(self, elx:int,ely:int)->Ingredient|Assiette:
