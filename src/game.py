@@ -209,12 +209,9 @@ class Game:
         fill_rect(x*40+2, y*40+42, 36, 6, colors[7])
         fill_rect(x*40+2, y*40+42, int(progress)*2, 6, colors[5])
     def scan_keyboard(self):
-        if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
+        if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME) or ion.keydown(ion.KEY_POWER):
             self.player.do_pickup_action()
             time.sleep(0.2)
-        elif ion.keydown(ion.KEY_TOOLBOX) or ion.keydown(ion.KEY_POWER):
-            print("hello")
-            time.sleep(0.1)
         elif ion.keydown(ion.KEY_UP):
             self.player.direction="up"
             self.player.move(0,-1)
@@ -344,7 +341,6 @@ class Game:
             self.draw_element(2,elx,ely)
             return el[1]
         if el[0]==2:
-            print("element picked")
             self.map[ely][elx]=2
             self.draw_element(2,elx,ely)
             return Ingredient(el[1])
@@ -353,7 +349,6 @@ class Game:
             self.draw_element(el[0],elx,ely)
             return Ingredient(el[1])
         else:
-            print("element not pickable")
             return None
 
 class Gui:
