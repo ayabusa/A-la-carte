@@ -17,6 +17,8 @@ sprites ={'assiette': (0, 3, 20, 17,
             'gg0000000000000000ggg0c0ccccccccccdcdd0g0ccd0ddcccddcdddddc000cdd0cccddcdddddcc00c0de0000000000dccc00cd00eeedddd0dd0ccc00cdc0eddddd0ddd0ccd00ccc0edddd0ccd00cde00ccc0dddd0cdd0e0dee00ccd0ddd0ddd0ed0eed00cdd0dd0ddd0edd0edd00ddc0d0cdd0eddd0dde00ccd00cdd0eeddd0dee00cdd0cdd0eedddd0eee00ddd0dd0eeddddd00ee00ddde0000000000cd0e00dddccccdeecce0ccd000ddccccdeeddeee0dde0g0ccccdeeddeeeee0d0ggg0000000000000000gg'),
  'gui_art': (0, 0, 56, 55,
              'ggggggggggggg0cccccccccd0cccccccddd0cccc00gggggggggggggggggggggggggg0cccccccccd0cccccccccdd0cccccd0ggggggggggggggggggggggggg0ccccccccd0ccccccccccdd0cccccd0ggggggggggggggggggggggggg0ccccccccd0ccccccccccddd0ccccdd0ggggggggggggggggggggggg0ccccccccd0ccccccccccccdd0ccdccd0ggggggggggggggggggggggg0ccccccccd0ccccccccccccdd0ccdccdd0gggggggggggggggggggggg0ccccccccd0ccccccccccccdd0cccdcdd0gggggggggggggggggggggg0cccccccd0cccccccccccccdd0cccdcdd0gggggggggggggggggggggg0cccccccd0cccccccccccccdd0cccccdd0gggggggggggggggggggggg0cccccccd0ccccccccccccdd0cccccddd0gggggggggggggggggggggg0cccccccd0ccccccccccccdd0cccccdd0gggggggggggggggggggggg0cccccccd0cccccccccccccd0cccccddd0gggggggggggggggggggggg0cccccccd0ccccccccccccdd0ccccddd0ggggggggggggggggggggggg0cccccccd0cccccccccccdd0cccccdd0gggggggggggggggggggggggg0cccccccd0ccccccccccdd0cccccdd0ggggggggggggggggggggggggg0ddccccd0ccccccccccdd0cccccdd0gggggggggggggggggggggggggg000dddcd0cccccccccdd0cccccdd0gggggggggggggggggggggggggg0ccc000ddcccccccccdd0cccccdd0ggggggggggggggggggggggggggg0ddcccc00ddccccccdd0cccccdd0gggggggggggggggggggggggggggg000ddcccc00dddccc00cccccdd0gggggggggggggggggggggggggggg043300dddccc000dddccccccdd0gggggggggggggggggggggggggggg0044433000ddcccc000ddcccdd0ggggggggggggggggggggggggggggg044444433300ddccccc00dddd0gggggggggggggggggggggggggggggg04444000443300dddcccd00d0gggggggggggggggggggggggggggggg044440444044433000dddddd0ggggggggggggggggggggggggggggggg04444044004444433300dddd0ggggggggggggggggggggggggggggggg0444444400444400043300d0ggggggggggggggggggggggggggggggg044044440044440044044330gggggggggggggggggggggggggggggggg04404444444444004404330ggggggggggggggggggggggggggggggggg04404444444440044404330ggggggggggggggggggggggggggggggggg0444044444444444444330ggggggggggggg0000000ggggggggggggggg044400444444444444330gggggggggg0004444444000ggggggggggggg0044400444444444330gggggggggg04cc44443444330gggggggggggggg00444000444440330ggggggggg04444443444444330gggggggggggggg004444400440330gggggggggg04443444443444330gggggggggggggg040044444433330gggggggggg04344444444444330ggggggggggggg0c0330000033300ggggggggggg04444444444333330gggggggg000g0ccc00330gg000ggggggggggggg04433443333333330ggggggg0ccc0c0cccc00gggggggggggggggggggg000033333330000fggggg00ccccccc0ccccc000ggggggggggggggggg0222000000022200gggg0cccccccccc0ccccccc0ggggggggggggggg0000022222220000c0gggcccddccccccc0ccccccc0ggggggggggggg0c056600000007600cd0ggcddd00ccccccc0ccccccc0ggggggggggg0c00507055767507040cd0gdd00g0cccc0dc0cccccccc0ggggggggg00c04030307060630330cd0gd0ggg0cccccc0dcc0ddcccc0gggg0000c0dc044344040303330ccd0g0gggg0cccccc0dcd000ddccd0000ccccd0dcc0004343333000cccd0ggggg0ccccccc0ccd0gg00dccccccccccdd0dcccc0000000cccccd0gggggg0cccc0d0dccd0gggg00dccccccc00000dddccccccccccddd0ggggggg0cccccc0dcdd0gggggg0dccc000ggggg000dddddddddd000ggggggg0ccccccc0ccd0gggggggg0000ggggggggggg0000000000gggggggggg0cccccc0dcdd0ggggggggggggggggggggggggggggggggggggggggggg0cccc0d0cddd0gggggggggggggggggggggggggggggggggggggggggg0ccccccc0cdd0ggggggggggggggggggggggggggggggggggggggggggg0cccccc0dcdd0ggggggggggggggggggggggggggggggggggggggggggg0cccc0d0cddd0ggggggggggggggggggggggggggggggggggggggggg'),
+ 'money_icon': (0, 0, 8, 11,
+                'ggccccgggcggggcgcggggggccggcgggccggcgggccggccggccggccggccggccggccggggggcgcggggcgggccccgg'),
  'oignon': (3, 3, 16, 13,
             'ggggggggggg00ggggggg00000g0650ggggg021122016650ggg0111c111210660g0211c111210g0500211cc11111200500211c11211110g0g012c112111110ggg012c111112120gggg01121112110gggg01221112110gggggg010122110gggggggg0g00000ggggggg'),
  'oignon_coupe': (3, 5, 13, 14,
@@ -51,6 +53,8 @@ sprites ={'assiette': (0, 3, 20, 17,
                 'gggg0000000ggggg0000223320000g003323332333200033233322333330032333233323320023332333233220022222333222220g0002222222000ggggg0000000gggg'),
  'tapis': (0, 0, 20, 20,
            'feeeeeffffffffeeeeefffeeeeeffffffeeeeefffffeeeeeffffeeeeefffffffeeeeeffeeeeefffffffffeeeeeeeeeefffffefffffeeeeeeeefffffeeefffffeeeeeefffffeeeeefffffeeeefffffeeeeeeefffffeefffffeeeeeeeeeffffffffffeeeeefeeeeeffffffffeeeeefffeeeeeffffffeeeeefffffeeeeeffffeeeeefffffffeeeeeffeeeeefffffffffeeeeeeeeeefffffefffffeeeeeeeefffffeeefffffeeeeeefffffeeeeefffffeeeefffffeeeeeeefffffeefffffeeeeeeeeeffffffffffeeeee'),
+ 'time_icon': (0, 0, 8, 11,
+               'gggccggggggccgggggccccgggcggggcgcggggcgccgggcggccggcgggccgggcggccggggggcgcggggcgggccccgg'),
  'tomate': (4, 3, 12, 13,
             'ggggggg0gggggggg0g060gggggg060700ggggg02277220ggg0276767220g026226227220022c22722120022cc222221002222c222110g0222222210gg0222221110ggg00111100gggggg0000gggg'),
  'tomate_coupe': (3, 4, 13, 11,
@@ -170,12 +174,15 @@ class Game:
         self.missions = []
         self.old_missions = []
         self.pro_mission = (time.monotonic(), 3)
+        self.g_timer = (time.monotonic(), 180)
+        self.g_money = 25
     def do_mission_step(self):
         if time.monotonic()-self.pro_mission[0]>self.pro_mission[1]:
             self.missions.append(Mission())
             self.pro_mission = (time.monotonic(), random.randint(15,25))
         for i in range(len(self.missions)):
             if self.missions[i].is_finished():
+                self.g_money-=2
                 self.missions.pop(i)
                 break
         if self.old_missions!=self.missions:
@@ -204,6 +211,25 @@ class Game:
                         self.draw_element(self.map[i][k],k,i)
                     else:
                         self.draw_progressbar(k,i, (time.monotonic()-el[2])*18//el[3])
+    def gui_first_render(self):
+        fill_rect(0,208,48,14,colors[3])
+        fill_rect(0,206,48,2,colors[2])
+        fill_rect(48,208,2,14,colors[2])
+        fill_rect(47,207,2,2,colors[2])
+        draw_string("15",2,209,colors[12],colors[3], True)
+        draw_sprite("money_icon", 38, 209)
+        fill_rect(272,208,48,14,colors[9])
+        fill_rect(272,206,48,2,colors[8])
+        fill_rect(270,208,2,14,colors[8])
+        fill_rect(271,207,2,2,colors[8])
+        draw_string("00:00",273,209,colors[12],colors[9], True)
+        draw_sprite("time_icon", 310, 209)
+    def gui_re_render(self):
+        draw_string(str(self.g_money),2,209,colors[12],colors[3], True)
+        seconds = str(int(self.g_timer[1]-(time.monotonic()-self.g_timer[0]))%60)
+        if len(seconds)==1:
+            seconds="0"+seconds
+        draw_string("0"+str(int(self.g_timer[1]-(time.monotonic()-self.g_timer[0]))//60)+":"+seconds,273,209,colors[12],colors[9], True)
     def draw_progressbar(self, x, y, progress):
         fill_rect(x*40, y*40+40, 40, 10, colors[0])
         fill_rect(x*40+2, y*40+42, 36, 6, colors[7])
@@ -327,6 +353,7 @@ class Game:
             elif old_el==13:
                 for i in self.missions:
                     if set(i.m_ingredients)==set(holding.a_ingredients):
+                        self.g_money+=10
                         self.missions.remove(i)
                         return None
                 return holding
@@ -393,8 +420,10 @@ gui = Gui()
 gui.loop()
 game = Game(0)
 game.render_all()
+game.gui_first_render()
 fill_rect(0,0,320,40,colors[2])
 while True:
     game.scan_keyboard()
     game.do_timer_step()
     game.do_mission_step()
+    game.gui_re_render()
