@@ -76,6 +76,13 @@ def draw_sprite(sprite_name: str, x: int, y: int, multiplier=1)->None:
                 curx += 1
             curx=0
             cury+=1
+            
+def save_data(hs):
+    try:
+        f = open("alacarte.sav","w")
+        f.truncate(0)
+        f.write(hs)
+    except:return
 
 class Ingredient:
     def __init__(self, i_nom):
@@ -174,8 +181,22 @@ class Game:
         self.missions = []
         self.old_missions = []
         self.pro_mission = (time.monotonic(), 3)
-        self.g_timer = (time.monotonic(), 180)
+        self.g_timer = (time.monotonic(), 5)
         self.g_money = 25
+    def gameover(self):
+        global highscore
+        fill_rect(52,12,216,196,colors[4])
+        fill_rect(50,12,2,196,colors[0])
+        fill_rect(268,12,2,196,colors[0])
+        fill_rect(52,10,216,2,colors[0])
+        fill_rect(52,67,216,2,colors[0])
+        fill_rect(52,208,216,2,colors[0])
+        draw_sprite("gui_art",52,12)
+        draw_string("GAME OVER", 115, 25, colors[0], colors[4])
+        draw_string("Ton score: "+str(self.g_money), 65, 85, colors[0], colors[4])
+        if self.g_money>highscore: highscore=self.g_money
+        draw_string("Meilleur score: "+str(self.g_money), 65, 110, colors[0], colors[4])
+        draw_string("OK pour aller au menu", 60, 190, colors[0], colors[4], True)
     def do_mission_step(self):
         if time.monotonic()-self.pro_mission[0]>self.pro_mission[1]:
             self.missions.append(Mission())
@@ -388,13 +409,10 @@ class Gui:
     def __init__(self) -> None:
         self.selected = 0
         self.render()
+        self.state = 0
     def redraw_text(self):
         draw_string("A la carte", 200, 10, colors[3], colors[15])
-        but_colors = [colors[4]]*3
-        but_colors[self.selected]=colors[3]
-        but = ["Jouer", "Options", "Aide"]
-        for i in range(len(but)):
-            draw_string(but[i], 200, 40+i*20, but_colors[i], colors[15])
+        draw_string("> Jouer (OK)", 200, 40, colors[4], colors[15])
     def render(self):
         fill_rect(0,0,320,222,colors[15])
         draw_sprite("gui_art", 0, 0, 4)
@@ -403,18 +421,13 @@ class Gui:
         while True:
             if ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME):
                 break
-            elif ion.keydown(ion.KEY_UP):
-                self.selected = (self.selected-1)%3
-                self.redraw_text()
-                time.sleep(0.2)
-            elif ion.keydown(ion.KEY_DOWN):
-                self.selected = (self.selected+1)%3
-                self.redraw_text()
-                time.sleep(0.2)
-        return self.selected
 
 
-
+highscore=0
+try:
+    with open("alacarte.sav","r") as f:
+        highscore=int(f.readline())
+except:pass
 
 gui = Gui()
 gui.loop()
@@ -423,6 +436,17 @@ game.render_all()
 game.gui_first_render()
 fill_rect(0,0,320,40,colors[2])
 while True:
+    if time.monotonic()-game.g_timer[0]>game.g_timer[1]:
+        game.gameover()
+        while not (ion.keydown(ion.KEY_OK) or ion.keydown(ion.KEY_HOME) or ion.keydown(ion.KEY_POWER)):
+            pass
+        gui = Gui()
+        time.sleep(1)
+        gui.loop()
+        game = Game(0)
+        game.render_all()
+        game.gui_first_render()
+        fill_rect(0,0,320,40,colors[2])
     game.scan_keyboard()
     game.do_timer_step()
     game.do_mission_step()
