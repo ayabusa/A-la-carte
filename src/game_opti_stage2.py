@@ -58,7 +58,7 @@ class A:
 		if _C in self.ai:ds(_L,x,y,mu)
 class M:
 	def __init__(self):
-		self.mi=[_C,_F];self.m_time=tm(),ra.randint(40,60)
+		self.mi=[_C,_F];self.m_time=tm(),ra.randint(50,70)
 		if ra.getrandbits(1)==1:self.mi.append(_D)
 		if ra.getrandbits(1)==1:self.mi.append(_B)
 		if ra.getrandbits(1)==1:self.mi.append(_E)
@@ -98,7 +98,7 @@ class G:
 		if self.g_money>hg:hg=self.g_money;shg(hg)
 		dt('Meilleur score: '+str(hg),65,110,c[0],c[4]);dt('OK pour aller au menu',60,190,c[0],c[4],_A)
 	def dms(self):
-		if tm()-self.pmi[0]>self.pmi[1]:self.ms.append(M());self.pmi=tm(),ra.randint(15,25)
+		if tm()-self.pmi[0]>self.pmi[1]:self.ms.append(M());self.pmi=tm(),ra.randint(15,20)
 		for i in range(len(self.ms)):
 			if self.ms[i].is_finished():self.g_money-=2;self.ms.pop(i);break
 		if self.old_missions!=self.ms:

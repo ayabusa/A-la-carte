@@ -2,10 +2,19 @@
 Jeu python pour la numworks réalisé pour le concours Ti Planet
 ![menu screenshot](assets/screenshot1.png)![ingame screenshot](assets/screenshot2.png)
 
-## Comment jouer au jeu
+## Comment installer le jeu
 > Attention ce jeu ne fonctionne que sur les OS tiers [Upsilon](https://getupsilon.web.app/) et [Omega](https://getomega.dev/).
 
 Il vous suffit de télecharger le dernier fichier alacarte.py dans l'onglet [release](https://github.com/ayabusa/A-la-carte/releases) de ce repository, et de l'envoyer sur votre Numworks avec [Upsilon File Exchanger](https://yaya-cout.github.io/Numworks-connector/#/). Il ne vous reste ensuite plus qu'à le lancer sur la calculatrice ;D
+
+## Comment jouer au jeu
+Ce jeu est un jeu de gestion de cuisine à la overcook où il vous faudra préparer des commandes dans un temps imparti. Pour cela il faudra cuire et découper certains ingrédients (car on ne mange pas un burger avec un oigon complet ;D), en les posants sur les planches à découper ou en les mettants sur une poele. Il faudra ensuite récupérer une assiette dans la pile et les mettre dessus pour constituer le burger. Chaque burger est composé au minimum de pain et d'un steak cuit. Une fois la commande préparé vous pouvez la déposer sur le tapis roulant pour récupérer votre argent!
+
+## Les touches
+Touche | Action
+--- | ---
+Ok | Prendre ou déposer un objet
+Flèches directionelles | Se déplacer
 
 ## Comment """compiler""" le jeu
 > Compiler est un grand mot car il s'agit en réalité plus de la génération des assets et d'un peu d'optimisation
