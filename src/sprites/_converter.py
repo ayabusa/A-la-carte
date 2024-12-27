@@ -72,48 +72,8 @@ def get_croped_image(img: Image.Image)->tuple[Image.Image, int, int]:
     img_croped = img.crop((offsetx, offsety, h-neg_offsety, w-neg_offsetx))
     return (img_croped, offsetx, offsety)
 
-def compress_string_image(img: str,w: int,h: int)->str:
-    l = []
-    for i in range(h):
-        l.append(img[i*w:(i+1)*w-1])
-    print(l)
-    for i in range(len(l)):
-        l_of_rep = []
-        rep = [0,0,0]
-        for k in range(len(l[i])):
-            if rep==[0,0,0]:
-                rep=[k,k,l[i][k]]
-            else:
-                if rep[2]==l[i][k]:
-                    rep[1]=k
-                else:
-                    if rep[1]-rep[0]>2:
-                        l_of_rep.append(rep)
-                    rep = [0,0,0]
-        if rep[1]-rep[0]>2:
-            l_of_rep.append(rep)
-        nv_li = l[i]
-        for rep_i in l_of_rep:
-            nv_li = nv_li.replace(rep_i[2]*(rep_i[1]-rep_i[0]), "?"+str(rep_i[2])+str(rep_i[1]-rep_i[0])+"!")
-        print(nv_li)
-
-def compress2(img: str,w: int,h: int)->str:
-    l = []
-    de = ""
-    de.replace
-    char = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","d","e","f","g","h"]
-    for i in range(h):
-        l.append(img[i*w:(i+1)*w-1])
-    print(l)
-    result = ""
-    for i in range(len(l)):
-        nv_li = l[i]
-        for k in char:
-            for m in range(w,4,-1):
-                nv_li = nv_li.replace(k*m, "?"+k+str(m)+"!")
-        result+=nv_li
-    return result
-
+def compress_string_image(img: str)->str:
+    pass
 
 def convert_all_files(save_to_file: bool, compress_sprites: bool, path: str)->None:
     files_list = [f for f in listdir(path) if isfile(join(path, f))]
@@ -133,7 +93,6 @@ def convert_all_files(save_to_file: bool, compress_sprites: bool, path: str)->No
         for v in range(h):
             for k in range(w):
                 result += get_color_id(*image_croped.getpixel((k, v)))
-        result = compress2(result, w,h)
         print('Finished,', file, '\n', result, '\n')
         final_result[file.removesuffix(".png")] = (off_x, off_y, w, h, result)
     if save_to_file: 
