@@ -124,7 +124,7 @@ class A:
 class M:
     def __init__(self)   :
         self.mi = ["p", "s_cuit"]
-        self.m_time = (tm(), ra.randint(40,60))
+        self.m_time = (tm(), ra.randint(50,70))
         if ra.getrandbits(1)==1: self.mi.append("sa_cuite")
         if ra.getrandbits(1)==1: self.mi.append("o_c")
         if ra.getrandbits(1)==1: self.mi.append("t_c")
@@ -223,7 +223,7 @@ class G:
     def dms(self):
         if tm()-self.pmi[0]>self.pmi[1]:
             self.ms.append(M())
-            self.pmi = (tm(), ra.randint(15,25))
+            self.pmi = (tm(), ra.randint(15,20))
         for i in range(len(self.ms)):
             if self.ms[i].is_finished():
                 self.g_money-=2

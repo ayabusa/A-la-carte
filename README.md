@@ -16,3 +16,6 @@ Il vous suffit de télecharger le dernier fichier alacarte.py dans l'onglet [rel
 3. Ensuite copier le dictionnaire dans `src/sprites/sprites_converted.txt` et mettez le dans `src/game_opti_stage1.py` pour la variable sprites
 4. Il est ensuite conseillé de rendre le script plus petit avec [python minifier](https://python-minifier.com/) et de mettre le résultat dans `src/game_opti_stage2.py`
 5. Après avoir sauvegargé il ne vous reste plus qu'à envoyer le script sur votre numworks avec le [site de numworks](https://my.numworks.com/python) ou [celui d'Upsilon](https://yaya-cout.github.io/Numworks-connector)
+
+## Me contacter
+Vous pouvez m'envoyer un ptit dm sur Discord même si je ne suis pas toujours très actif: `@ayabusa_`
