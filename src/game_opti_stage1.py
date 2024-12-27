@@ -202,7 +202,7 @@ class G:
         self.ms = []
         self.old_missions = []
         self.pmi = (tm(), 1)
-        self.g_timer = (tm(), 40)
+        self.g_timer = (tm(), 180)
         self.g_money = 0
     def gover(self):
         global hg
@@ -435,8 +435,9 @@ class Gui:
         self.r()
         self.state = 0
     def redraw_text(self):
-        dt("A la carte", 200, 10, c[3], c[15])
-        dt("Jouer (OK)", 200, 40, c[4], c[15])
+        dt("A la carte", 200, 10, c[4], c[15])
+        dt("Jouer (OK)", 200, 40, c[3], c[15])
+        dt("Par Ayabusa", 210, 205, c[4], c[15])
     def r(self):
         fr(0,0,320,222,c[15])
         ds("ga", 0, 0, 4)
