@@ -10,6 +10,8 @@ Il vous suffit de télecharger le dernier fichier alacarte.py dans l'onglet [rel
 ## Comment jouer au jeu
 Ce jeu est un jeu de gestion de cuisine à la overcook où il vous faudra préparer des commandes dans un temps imparti. Pour cela il faudra cuire et découper certains ingrédients (car on ne mange pas un burger avec un oigon complet ;D), en les posants sur les planches à découper ou en les mettants sur une poele. Il faudra ensuite récupérer une assiette dans la pile et les mettre dessus pour constituer le burger. Chaque burger est composé au minimum de pain et d'un steak cuit. Une fois la commande préparé vous pouvez la déposer sur le tapis roulant pour récupérer votre argent!
 
+[![Démo sur youtube](https://img.youtube.com/vi/IMd0z1KvU6g/0.jpg)](https://youtu.be/IMd0z1KvU6g)
+
 ## Les touches
 Touche | Action
 --- | ---
