@@ -18,7 +18,11 @@ Touche | Action
 Ok | Prendre ou déposer un objet
 Flèches directionelles | Se déplacer
 
-## Comment """compiler""" le jeu
+## Comment """compiler""" le jeu (Maintenant inutile)
+> Cette section est maintenant complètement inutile car pour je ne sais quelle raison `game_opti_stage1.py` prend moins de place que la version compacté
+
+---
+
 > Compiler est un grand mot car il s'agit en réalité plus de la génération des assets et d'un peu d'optimisation
 
 > Il est à noter que le jeu passe à travers plusieurs phases d'optimisation, `game.py` n'est la que pour référence car le développement se fait maintentant dans `game_opti_stage1.py` où les noms de variables et de fonctions ont été raccourcis. Et enfin `game_opti_stage2.py` est la version finale, réellement illisible.
@@ -27,6 +31,9 @@ Flèches directionelles | Se déplacer
 3. Ensuite copier le dictionnaire dans `src/sprites/sprites_converted.txt` et mettez le dans `src/game_opti_stage1.py` pour la variable sprites
 4. Il est ensuite conseillé de rendre le script plus petit avec [python minifier](https://python-minifier.com/) et de mettre le résultat dans `src/game_opti_stage2.py`
 5. Après avoir sauvegargé il ne vous reste plus qu'à envoyer le script sur votre numworks avec le [site de numworks](https://my.numworks.com/python) ou [celui d'Upsilon](https://yaya-cout.github.io/Numworks-connector)
+
+## Premières inspirations
+![screenshot de mon whiteboard](assets/whiteboard.png)
 
 ## Me contacter
 Vous pouvez m'envoyer un ptit dm sur Discord même si je ne suis pas toujours très actif: `@ayabusa_`
