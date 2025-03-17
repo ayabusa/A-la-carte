@@ -243,13 +243,11 @@ class Game:
         fill_rect(272,206,48,2,colors[8])
         fill_rect(270,208,2,14,colors[8])
         fill_rect(271,207,2,2,colors[8])
-        draw_string("00:00",273,209,colors[12],colors[9], True)
+        draw_string("0:00",273,209,colors[12],colors[9], True)
         draw_sprite("time_icon", 310, 209)
     def gui_re_render(self):
         draw_string(str(self.g_money),2,209,colors[12],colors[3], True)
         seconds = str(int(self.g_timer[1]-(time.monotonic()-self.g_timer[0]))%60)
-        if len(seconds)==1:
-            seconds="0"+seconds
         draw_string("0"+str(int(self.g_timer[1]-(time.monotonic()-self.g_timer[0]))//60)+":"+seconds,273,209,colors[12],colors[9], True)
     def draw_progressbar(self, x, y, progress):
         fill_rect(x*40, y*40+40, 40, 10, colors[0])
